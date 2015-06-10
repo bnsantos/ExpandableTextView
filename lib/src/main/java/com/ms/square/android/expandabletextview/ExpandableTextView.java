@@ -32,11 +32,11 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-public class ExpandableTextView extends LinearLayout implements View.OnClickListener {
+public class ExpandableTextView extends RelativeLayout implements View.OnClickListener {
 
     private static final String TAG = ExpandableTextView.class.getSimpleName();
 
@@ -64,6 +64,8 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     private int mMaxCollapsedLines;
 
     private int mMarginBetweenTxtAndBottom;
+
+    private boolean mClickExpand;
 
     private Drawable mExpandDrawable;
 
@@ -206,6 +208,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         mAnimAlphaStart = typedArray.getFloat(R.styleable.ExpandableTextView_animAlphaStart, DEFAULT_ANIM_ALPHA_START);
         mExpandDrawable = typedArray.getDrawable(R.styleable.ExpandableTextView_expandDrawable);
         mCollapseDrawable = typedArray.getDrawable(R.styleable.ExpandableTextView_collapseDrawable);
+        mClickExpand = typedArray.getBoolean(R.styleable.ExpandableTextView_onClickExpand, true);
 
         if (mExpandDrawable == null) {
             mExpandDrawable = getResources().getDrawable(R.drawable.ic_expand_small_holo_light);
@@ -223,7 +226,9 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private void findViews() {
         mTv = (TextView) findViewById(R.id.expandable_text);
-        mTv.setOnClickListener(this);
+        if(mClickExpand){
+            mTv.setOnClickListener(this);
+        }
         mButton = (ImageButton) findViewById(R.id.expand_collapse);
         mButton.setImageDrawable(mCollapsed ? mExpandDrawable : mCollapseDrawable);
         mButton.setOnClickListener(this);

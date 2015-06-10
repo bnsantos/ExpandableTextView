@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         expandableTextView:maxCollapsedLines="4"
-        expandableTextView:animAlphaStart="1">
+        expandableTextView:animAlphaStart="1"
+        expandableTextView:onClickExpand="false">
 
         <TextView
             android:id="@id/expandable_text"
@@ -26,11 +27,14 @@
 
         <ImageButton
             android:id="@id/expand_collapse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_gravity="right|bottom"
-            android:background="@android:color/transparent"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="10dp"
+            android:alpha="0.7"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
     </com.ms.square.android.expandabletextview.ExpandableTextView>
 
 </LinearLayout>
